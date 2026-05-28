@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrontDesk AI | AI Receptionist Agency</title>
+    <meta
+      name="description"
+      content="AI receptionist services for service businesses that need calls answered, appointments booked, and leads qualified around the clock."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="FrontDesk AI home">
+        <span class="brand-mark">F</span>
+        <span>FrontDesk AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#lead-form">Book a call</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero-image"
+          src="assets/ai-reception-hero.png"
+          alt="Modern reception desk with phone and appointment technology"
+        />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">AI receptionists for growing service teams</p>
+          <h1 id="hero-title">Never miss another high-intent call.</h1>
+          <p class="hero-copy">
+            We build and manage AI receptionists that answer calls, qualify
+            leads, book appointments, and hand off urgent conversations to your
+            team.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#lead-form">Get a demo</a>
+            <a class="button button-secondary" href="#pricing">View pricing</a>
+          </div>
+          <dl class="hero-metrics" aria-label="Agency performance highlights">
+            <div>
+              <dt>24/7</dt>
+              <dd>Call coverage</dd>
+            </div>
+            <div>
+              <dt>2 min</dt>
+              <dd>Lead summary</dd>
+            </div>
+            <div>
+              <dt>CRM</dt>
+              <dd>Ready handoff</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section intro-band" id="services" aria-labelledby="services-title">
+        <div class="section-heading">
+          <p class="eyebrow">What we handle</p>
+          <h2 id="services-title">A receptionist workflow built around revenue.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">01</span>
+            <h3>Answer every call</h3>
+            <p>
+              Natural voice agents greet callers, capture intent, and keep the
+              conversation moving when your team is busy or closed.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">02</span>
+            <h3>Qualify leads</h3>
+            <p>
+              Custom intake questions collect budget, urgency, location, and
+              fit before your team spends time on follow-up.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">03</span>
+            <h3>Book appointments</h3>
+            <p>
+              Calendar-aware scheduling turns qualified callers into booked
+              consultations, estimates, and first appointments.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">04</span>
+            <h3>Send clean handoffs</h3>
+            <p>
+              Each interaction is summarized with contact details, caller needs,
+              next steps, and urgency so your team can respond fast.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section pricing-section" id="pricing" aria-labelledby="pricing-title">
+        <div class="section-heading centered">
+          <p class="eyebrow">Pricing</p>
+          <h2 id="pricing-title">Start lean, then scale your call coverage.</h2>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <p class="plan-name">Starter</p>
+            <h3>$499<span>/mo</span></h3>
+            <p>For solo operators validating AI call capture.</p>
+            <ul>
+              <li>One receptionist workflow</li>
+              <li>Up to 250 calls per month</li>
+              <li>Email lead summaries</li>
+            </ul>
+            <a class="button button-outline" href="#lead-form">Choose Starter</a>
+          </article>
+          <article class="price-card featured-price">
+            <p class="plan-name">Growth</p>
+            <h3>$1,250<span>/mo</span></h3>
+            <p>For teams that want booking, qualification, and CRM handoff.</p>
+            <ul>
+              <li>Three receptionist workflows</li>
+              <li>Up to 1,000 calls per month</li>
+              <li>Calendar and CRM integration</li>
+            </ul>
+            <a class="button button-primary" href="#lead-form">Choose Growth</a>
+          </article>
+          <article class="price-card">
+            <p class="plan-name">Scale</p>
+            <h3>Custom</h3>
+            <p>For multi-location teams with advanced routing and reporting.</p>
+            <ul>
+              <li>Unlimited workflows</li>
+              <li>Custom integrations</li>
+              <li>Dedicated optimization lead</li>
+            </ul>
+            <a class="button button-outline" href="#lead-form">Talk to sales</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section lead-section" aria-labelledby="lead-title">
+        <div class="lead-copy">
+          <p class="eyebrow">Lead capture</p>
+          <h2 id="lead-title">See how many missed calls you can turn into booked work.</h2>
+          <p>
+            Share a few details and we will map the first receptionist workflow
+            for your business.
+          </p>
+        </div>
+        <form class="lead-form" id="lead-form">
+          <label>
+            Full name
+            <input name="name" type="text" autocomplete="name" required />
+          </label>
+          <label>
+            Work email
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            Company
+            <input name="company" type="text" autocomplete="organization" required />
+          </label>
+          <label>
+            Phone
+            <input name="phone" type="tel" autocomplete="tel" required />
+          </label>
+          <label>
+            Monthly call volume
+            <select name="volume" required>
+              <option value="">Select range</option>
+              <option>Under 250</option>
+              <option>250-1,000</option>
+              <option>1,000-5,000</option>
+              <option>5,000+</option>
+            </select>
+          </label>
+          <label>
+            What should your AI receptionist handle?
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button class="button button-primary form-submit" type="submit">
+            Request demo
+          </button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>FrontDesk AI</p>
+      <a href="admin.html">View captured leads</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | FrontDesk AI Leads</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-body">
+    <header class="site-header admin-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">F</span>
+        <span>FrontDesk AI</span>
+      </a>
+      <nav class="nav-links" aria-label="Admin navigation">
+        <a href="index.html">Landing page</a>
+      </nav>
+    </header>
+
+    <main class="admin-main">
+      <section class="admin-top" aria-labelledby="admin-title">
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1 id="admin-title">Captured leads</h1>
+          <p>Sign in to review enquiries submitted through the landing page.</p>
+        </div>
+        <div class="admin-actions">
+          <button class="button button-outline" id="logout-admin" type="button" hidden>
+            Log out
+          </button>
+          <button class="button button-secondary" id="export-leads" type="button">
+            Export CSV
+          </button>
+          <button class="button button-outline danger" id="clear-leads" type="button">
+            Clear leads
+          </button>
+        </div>
+      </section>
+
+      <section class="admin-login-panel" id="admin-login-panel" aria-labelledby="login-title">
+        <form class="admin-login-form" id="admin-login-form">
+          <h2 id="login-title">Admin login</h2>
+          <label>
+            Password
+            <input
+              id="admin-password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </label>
+          <button class="button button-primary" type="submit">Unlock leads</button>
+          <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="admin-panel" id="admin-panel" aria-label="Lead table" hidden>
+        <div class="table-toolbar">
+          <label class="search-label">
+            Search
+            <input id="lead-search" type="search" placeholder="Name, company, email" />
+          </label>
+          <p id="lead-count">0 leads</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Volume</th>
+                <th>Message</th>
+                <th>Submitted</th>
+              </tr>
+            </thead>
+            <tbody id="lead-rows"></tbody>
+          </table>
+          <div class="empty-state" id="empty-state">
+            <h2>No leads yet</h2>
+            <p>Submit the landing page form to see leads appear here.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
