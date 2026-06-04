@@ -3,6 +3,7 @@ import { marked } from "marked";
 type MarkdownViewProps = {
   content: string;
   notionPath?: string | null;
+  title?: string;
 };
 
 marked.setOptions({
@@ -91,8 +92,51 @@ function splitCallouts(content: string) {
   return { markdown, callouts };
 }
 
-function renderMarkdown(content: string, notionPath?: string | null) {
-  const rewritten = rewriteLinks(content, notionPath);
+function stripDuplicateTitle(content: string, title?: string) {
+  if (!title) {
+    return content;
+  }
+
+  const firstHeading = content.match(/^#\s+(.+)\n+/);
+
+  if (firstHeading?.[1]?.trim().toLowerCase() === title.trim().toLowerCase()) {
+    return content.slice(firstHeading[0].length);
+  }
+
+  return content;
+}
+
+function renderCalloutBody(body: string) {
+  const sections = body.split(/\n(?=#{3,5}\s+)/);
+
+  if (sections.length <= 1) {
+    return marked.parse(body) as string;
+  }
+
+  return sections
+    .map((section) => {
+      const match = section.match(/^(#{3,5})\s+(.+)\n?([\s\S]*)$/);
+
+      if (!match) {
+        return marked.parse(section) as string;
+      }
+
+      const heading = match[2].replace(/\*\*/g, "").trim();
+      const detail = match[3].trim();
+
+      if (!detail) {
+        return `<h3>${escapeAttribute(heading)}</h3>`;
+      }
+
+      return `<details class="notion-toggle"><summary>${escapeAttribute(heading)}</summary><div class="notion-children">${marked.parse(
+        detail
+      ) as string}</div></details>`;
+    })
+    .join("");
+}
+
+function renderMarkdown(content: string, notionPath?: string | null, title?: string) {
+  const rewritten = rewriteLinks(stripDuplicateTitle(content, title), notionPath);
   const { markdown, callouts } = splitCallouts(rewritten);
   let html = marked.parse(markdown) as string;
 
@@ -104,7 +148,7 @@ function renderMarkdown(content: string, notionPath?: string | null) {
     const body = hasIcon ? lines.slice(1).join("\n").trim() : callout;
     const calloutHtml = `<section class="notion-callout"><div class="callout-icon">${escapeAttribute(
       icon
-    )}</div><div class="callout-content">${marked.parse(body) as string}</div></section>`;
+    )}</div><div class="callout-content">${renderCalloutBody(body)}</div></section>`;
 
     html = html.replace(`<div data-callout="${index}"></div>`, calloutHtml);
   });
@@ -112,8 +156,8 @@ function renderMarkdown(content: string, notionPath?: string | null) {
   return html;
 }
 
-export function MarkdownView({ content, notionPath }: MarkdownViewProps) {
-  const html = renderMarkdown(content, notionPath);
+export function MarkdownView({ content, notionPath, title }: MarkdownViewProps) {
+  const html = renderMarkdown(content, notionPath, title);
 
   return <div className="article-body" dangerouslySetInnerHTML={{ __html: html }} />;
 }

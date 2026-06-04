@@ -31,14 +31,14 @@ export default async function WikiPage({
   const blocks = await listBlocks(page.id);
 
   return (
-    <div className="shell">
+    <div className="shell notion-shell">
       <Topbar />
       <main className="main content-grid">
         <WikiSidebar pages={visiblePages} activeSlug={page.slug} />
-        <article className="article panel">
-          <header className="article-header">
+        <article className="article panel notion-page">
+          <header className="article-header notion-page-header">
             <div>
-              <p className="eyebrow">{page.section}</p>
+              <div className="notion-page-icon" aria-hidden="true">📘</div>
               <h1>{page.title}</h1>
               {page.excerpt ? <p className="muted">{page.excerpt}</p> : null}
             </div>
@@ -51,7 +51,7 @@ export default async function WikiPage({
           {blocks.length > 0 ? (
             <NotionBlocks blocks={blocks} />
           ) : (
-            <MarkdownView content={page.content} notionPath={page.notion_path} />
+            <MarkdownView content={page.content} notionPath={page.notion_path} title={page.title} />
           )}
         </article>
       </main>
