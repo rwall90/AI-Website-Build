@@ -685,6 +685,18 @@ textarea {
   line-height: 1;
 }
 
+.notion-version {
+  display: inline-flex;
+  margin: 12px 0 4px;
+  padding: 4px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.56);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.78rem;
+  font-weight: 760;
+}
+
 .notion-page h1 {
   color: #ededeb;
   font-size: clamp(2.55rem, 5vw, 3.05rem);

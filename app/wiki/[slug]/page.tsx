@@ -40,6 +40,7 @@ export default async function WikiPage({
             <div>
               <div className="notion-page-icon" aria-hidden="true">📘</div>
               <h1>{page.title}</h1>
+              <p className="notion-version">Notion-style reader v2</p>
               {page.excerpt ? <p className="muted">{page.excerpt}</p> : null}
             </div>
             {session.role === "admin" ? (
