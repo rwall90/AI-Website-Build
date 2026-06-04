@@ -31,9 +31,9 @@ export default async function AdminPage({
           <Link className="button secondary" href="/admin?new=1">
             New page
           </Link>
-          <Link className="button" href="/admin/notion-import">
+          <a className="button" href="/admin/notion-import">
             Import from Notion
-          </Link>
+          </a>
         </section>
 
         {params.imported ? (
