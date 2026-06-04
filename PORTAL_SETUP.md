@@ -49,3 +49,27 @@ review, assign the right audience, then publish.
 The current password role login is intentionally simple. When the portal shape
 is right, replace it with Clerk, Auth0, or Supabase Auth and map authenticated
 users to roles/organisations in Postgres.
+
+## Notion API import
+
+For better Notion fidelity than Markdown export, create a read-only Notion
+integration and add it to the source playbook page.
+
+Add these Vercel environment variables:
+
+```text
+NOTION_TOKEN=your-read-only-internal-integration-secret
+NOTION_PAGE_ID=your-root-playbook-page-id
+```
+
+You can use `NOTION_PAGE_URL` instead of `NOTION_PAGE_ID`; the app will parse
+the page id from the URL.
+
+Run this in Supabase SQL Editor before the first API import:
+
+```text
+supabase/notion-blocks-migration.sql
+```
+
+Then sign in as admin and click **Import from Notion** on `/admin`. The importer
+reads Notion only; it does not write back to Notion.
