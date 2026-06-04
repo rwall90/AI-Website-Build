@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Topbar } from "@/components/Topbar";
-import { importFromNotion, savePage } from "@/app/actions";
+import { savePage } from "@/app/actions";
 import { requireAdmin } from "@/lib/auth";
 import { listPages } from "@/lib/supabase";
 
@@ -31,11 +31,9 @@ export default async function AdminPage({
           <Link className="button secondary" href="/admin?new=1">
             New page
           </Link>
-          <form action={importFromNotion}>
-            <button className="button" type="submit">
-              Import from Notion
-            </button>
-          </form>
+          <Link className="button" href="/admin/notion-import">
+            Import from Notion
+          </Link>
         </section>
 
         {params.imported ? (

@@ -101,6 +101,12 @@ export async function savePage(formData: FormData) {
 
 export async function importFromNotion() {
   await requireAdmin();
-  const imported = await importNotionPlaybook();
-  redirect(`/admin?imported=${imported.length}`);
+
+  try {
+    const imported = await importNotionPlaybook();
+    redirect(`/admin?imported=${imported.length}`);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown import error.";
+    redirect(`/admin/notion-import?error=${encodeURIComponent(message.slice(0, 240))}`);
+  }
 }
