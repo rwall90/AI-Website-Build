@@ -101,16 +101,20 @@ export async function listPages(options: { includeDrafts?: boolean } = {}) {
     return seedPages.filter((page) => options.includeDrafts || page.status === "published");
   }
 
-  const statusFilter = options.includeDrafts ? "" : "&status=eq.published";
-  const response = await supabaseFetch(
-    `playbook_pages?select=*&order=sort_order.asc,updated_at.desc${statusFilter}`
-  );
+  try {
+    const statusFilter = options.includeDrafts ? "" : "&status=eq.published";
+    const response = await supabaseFetch(
+      `playbook_pages?select=*&order=sort_order.asc,updated_at.desc${statusFilter}`
+    );
 
-  if (!response.ok) {
-    throw new Error("Could not load playbook pages.");
+    if (!response.ok) {
+      return seedPages.filter((page) => options.includeDrafts || page.status === "published");
+    }
+
+    return parseResponse<PlaybookPage[]>(response);
+  } catch {
+    return seedPages.filter((page) => options.includeDrafts || page.status === "published");
   }
-
-  return parseResponse<PlaybookPage[]>(response);
 }
 
 export async function getPage(slug: string, options: { includeDrafts?: boolean } = {}) {
