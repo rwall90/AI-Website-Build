@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { importFromNotion } from "@/app/actions";
 import { Topbar } from "@/components/Topbar";
 import { requireAdmin } from "@/lib/auth";
 
@@ -28,11 +27,9 @@ export default async function NotionImportPage({
             </p>
           ) : null}
           <div className="editor-actions">
-            <form action={importFromNotion}>
-              <button className="button" type="submit">
-                Start import
-              </button>
-            </form>
+            <a className="button" href="/admin/notion-import/run">
+              Start import
+            </a>
             <Link className="button outline" href="/admin">
               Back to admin
             </Link>
