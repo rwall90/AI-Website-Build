@@ -27,6 +27,9 @@ export default async function NotionImportPage({
             </p>
           ) : null}
           <div className="editor-actions">
+            <a className="button secondary" href="/admin/notion-import/check">
+              Check setup
+            </a>
             <a className="button" href="/admin/notion-import/run">
               Start import
             </a>
