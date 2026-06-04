@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Topbar } from "@/components/Topbar";
-import { savePage } from "@/app/actions";
+import { importFromNotion, savePage } from "@/app/actions";
 import { requireAdmin } from "@/lib/auth";
 import { listPages } from "@/lib/supabase";
 
@@ -15,6 +15,12 @@ export default async function AdminPage({
   const selected = params.new
     ? null
     : pages.find((page) => page.slug === params.selected) || pages[0] || null;
+  const notionChecks = [
+    ["NOTION_TOKEN", Boolean(process.env.NOTION_TOKEN)],
+    ["NOTION_PAGE_ID or NOTION_PAGE_URL", Boolean(process.env.NOTION_PAGE_ID || process.env.NOTION_PAGE_URL)],
+    ["SUPABASE_URL", Boolean(process.env.SUPABASE_URL)],
+    ["SUPABASE_SERVICE_ROLE_KEY", Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY)]
+  ];
 
   return (
     <div className="shell">
@@ -39,6 +45,23 @@ export default async function AdminPage({
         {params.imported ? (
           <p className="notice">Imported {params.imported} Notion pages. Open the wiki to review structured blocks.</p>
         ) : null}
+
+        <section className="panel" style={{ marginBottom: "22px" }}>
+          <p className="eyebrow">Notion setup</p>
+          <h2>Import readiness</h2>
+          {notionChecks.map(([label, ok]) => (
+            <p key={String(label)}>
+              <strong>{label}:</strong> {ok ? "OK" : "Missing"}
+            </p>
+          ))}
+          <div className="editor-actions">
+            <form action={importFromNotion}>
+              <button className="button" type="submit">
+                Run Notion import
+              </button>
+            </form>
+          </div>
+        </section>
 
         <section className="admin-layout">
           <aside className="panel">
